@@ -14,7 +14,9 @@ The orginal Mocha project @see mochajs/mocha.
   
   # compile
   > npx tsc --target es2018 --module nodenext --outDir './lib'
-  
+  # and copy two files
+  > cp src/mocharc.json lib/ && cp src/browser/template.html lib/browser/
+
   # format
   > npx prettier -w ./lib
   
