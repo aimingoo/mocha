@@ -1,0 +1,108 @@
+'use strict';
+
+// Alias exports to a their normalized format Mocha#reporter to prevent a need
+// for dynamic (try/catch) requires, which Browserify doesn't handle.
+
+/* 替代原来的载入 */
+import Base = require('./base');  // success
+import Dot = require('./dot');
+import Doc = require('./doc');
+import TAP = require('./tap');
+import JSON = require('./json');
+import HTML = require('./html');
+import List = require('./list');
+import Min = require('./min');
+import Spec = require('./spec');
+import Nyan = require('./nyan');
+import XUnit = require('./xunit');
+import Markdown = require('./markdown');
+import Progress = require('./progress');
+import Landing = require('./landing');
+import JSONStream = require('./json-stream');
+
+exports.Base = exports.base = Base; // success
+exports.Dot = exports.dot = Dot;
+exports.Doc = exports.doc = Doc;
+exports.TAP = exports.tap = TAP;
+exports.JSON = exports.json = JSON;
+exports.HTML = exports.html = HTML;
+exports.List = exports.list = List;
+exports.Min = exports.min = Min;
+exports.Spec = exports.spec = Spec;
+exports.Nyan = exports.nyan = Nyan;
+exports.XUnit = exports.xunit = XUnit;
+exports.Markdown = exports.markdown = Markdown;
+exports.Progress = exports.progress = Progress;
+exports.Landing = exports.landing = Landing;
+exports.JSONStream = exports['json-stream'] = JSONStream;
+
+/* 添加名字空间的导出 */
+namespace alias {  // NOTE: 使用export type，而不是使用export import ...，是指仅导出多个合并的名字中的types
+  export type base = Base;  // success
+  export type dot = Dot;
+  export type doc = Doc;
+  export type tap = TAP;
+  export type json = JSON;
+  export type html = HTML;
+  export type list = List;
+  export type min = Min;
+  export type spec = Spec;
+  export type nyan = Nyan;
+  export type xunit = XUnit;
+  export type markdown = Markdown;
+  export type progress = Progress;
+  export type landing = Landing;
+  export type json_stream = JSONStream;  // warnning!
+}
+
+namespace reporters {
+  export type base = alias.base;
+  export type dot = alias.dot;
+  export type doc = alias.doc;
+  export type tap = alias.tap;
+  export type json = alias.json;
+  export type html = alias.html;
+  export type list = alias.list;
+  export type min = alias.min;
+  export type spec = alias.spec;
+  export type nyan = alias.nyan;
+  export type xunit = alias.xunit;
+  export type markdown = alias.markdown;
+  export type progress = alias.progress;
+  export type landing = alias.landing;
+  export type json_stream = alias.json_stream;   // warnning!
+
+  export type Base = alias.base;
+  export type Dot = alias.dot;
+  export type Doc = alias.doc;
+  export type TAP = alias.tap;
+  export type JSON = alias.json;
+  export type HTML = alias.html;
+  export type List = alias.list;
+  export type Min = alias.min;
+  export type Spec = alias.spec;
+  export type Nyan = alias.nyan;
+  export type XUnit = alias.xunit;
+  export type Markdown = alias.markdown;
+  export type Progress = alias.progress;
+  export type Landing = alias.landing;
+  export type JSONStream = alias.json_stream;
+
+  export type ReporterOptions = {
+    open?: string;        // default: '['
+    complete?: string;    // default: '='
+    incomplete?: string;  // default: '.' (a char define in Base.symbols.dot)
+    close?: string;       // default: ']'
+    verbose?: boolean;    // default: false
+    tapVersion?: string;  // default: undefined (or any object x, will call x.toString())
+    output?: string;      // default: undefined (a filename, will output into)
+    suiteName?: string;   // default:'Mocha Tests' (a DEFAULT_SUITE_NAME define in xunit.ts);
+    maxDiffSize?: number;
+  }
+
+  export type ReporterConstructor = typeof Base;
+}
+
+let reporters = exports;
+
+export = reporters;
